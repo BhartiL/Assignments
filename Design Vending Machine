@@ -44,14 +44,14 @@ If (VendingMachine.IsNotEmpty && VendingMachine.IsWorking)
                   VendingMachine.DropItemAndChangeIntoTray->VendingMachine,Tray,Item,Change:CustomerCollectItem&Change 
                     }
                    Else {
-                  VendingMachine.ThrowNotSufficientChangeException->Machine,ExceptionMessage:MessageDisplayed On Machine
+                  VendingMachine.ThrowNotSufficientChangeException->Machine,Change,ExceptionMessage:MessageDisplayed On Machine
                    VendingMachine.CancelOrder->VendingMachine,Item,Tray,Money: MachineDrops Inserted Money Back To tray
                     Customer.CollectsInsertedMoneyFromTray->VendingMachine,Tray,Cash/Coins
                     VendingMachine.Reset->VendingMachine:CustomerEnteredData Get Cleared
                        }
                     if(VendingMachine.ReceivedMoney<TotalPrice)
                      { 
-                    VendingMachine.ThrowNotFullPaidException->Vending Machine,ExceptionMessage:MessageDisplayed on Machine
+                    VendingMachine.ThrowNotFullPaidException->Vending Machine,Money,ExceptionMessage:MessageDisplayed on Machine
                  VendingMachine.NotifyRemainingAmountToBeInsertedToCustomer->Vending Machine,Notification,Money:Notification Blinks on Machine       
                              if (Notification==True && Customer.DoesnotInsertRemainingMoney){
                                 VendingMachine.CancelOrder->VendingMachine,Item,Tray,Money:Machine Drops Inserted Money Back To Tray
@@ -68,7 +68,7 @@ If (VendingMachine.IsNotEmpty && VendingMachine.IsWorking)
          }}
 
         Else{
-        VendingMachine.throwCrossedMaximumQuantityException->VendingMachine,ExceptionMessage:Message Displayed on Machine
+        VendingMachine.throwCrossedMaximumQuantityException->VendingMachine,Item,ExceptionMessage:Message Displayed on Machine
         Vending Machine.Reset->VendingMachine:CustomerEnteredData Get Cleared
         }}
     Else{
