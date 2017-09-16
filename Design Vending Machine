@@ -68,7 +68,7 @@ If (VendingMachine.IsNotEmpty && VendingMachine.IsWorking)
          }}
 
         Else{
-        VendingMachine.throwCrossedMaximumQuantityException->VendingMachine,Item,ExceptionMessage:Message Displayed on Machine
+        VendingMachine.ThrowCrossedMaximumQuantityException->VendingMachine,Item,ExceptionMessage:Message Displayed on Machine
         Vending Machine.Reset->VendingMachine:CustomerEnteredData Get Cleared
         }}
     Else{
