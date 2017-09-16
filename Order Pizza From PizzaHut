@@ -1,0 +1,66 @@
+Identify Objects and Behaviors:
+
+Internet: 
+Data:Pizza Hut Site,Discount Sites,Coupons
+Behaviour:SearchForPizzaHutSite,Search For Coupons
+
+Pizza HutWebsite:  
+Data: Url, Mobile App,Store Location,BankAccount
+Behavior: Register Consumers,TakePizzaOrder, Make pizza, Deliver Pizza,Send Email Receipts/Confirmation,Show Discount Coupons/Promotions
+
+Pizza: 
+Data:PizzaTypes  ,Pizza sizes, Toppings,Sauce,Pizza Crust
+Behaviour:
+
+Consumer/Pizza Shopper:
+Data:   Name,Address,Contact no,Email ID,Credit Card/Cash,Pizza
+Behavior: Register/LoginToPizzaHutSite/App,Select pizza,Create Pizza,Select Toppings,Confirm Address, Search Coupons,Place order,Make  Payment, PickUpPizzaFromPizzaStore,CancelOrder
+
+Credit Card:
+Data:Number,Name,Company,Expiry,SecurityCode
+
+CreditCardCompany:
+Behavior:Authorize Transaction
+
+Sequence Of Invoking Behaviors On Objects 
+
+if( Internet.IsWorking){
+
+Consumer.SelectMedium/ModeToOrderPizzaFromPizzahut->Pizzahut Website,PizzaHutApp: PizzaHutSite/App Opens
+if(PizzaHutSite.IsNotEmpty||PizzaHutAppIsNot Down)
+{
+if(Consumer.DoesNotHaveAccountOnPizzaHutSite/App){
+Consumer.RegisterOnPizzaHutSite/App->PizzaHut Site/App,Name,EmailID,Address,ContactNo,Username,Password:RegistrationConfirmation
+}
+Consumer.LoginOnPizzaHutSite/App->PizzaHut Site/App,Username,Password:Login Successful
+
+Consumer.Select/AddPizza->PizzaHut Site/App,Pizza Types,PizzaSize,Toppings,ChoiceOfMeat/Vegetables,Sauce,PizzaQuantity,Price:PizzaAddedToCart
+
+if(Consumer.WantsToMake/CustomizePizza)->PizzaHut Site/App,Pizza Base,Pizza Types,PizzaSize,Toppings,ChoiceOfMeat/Veg,Sauce,PizzaQuantity:PizzaAddedtoCart
+
+Consumer.SearchPromotionsOnPizzaHutIfAvailableAny->PizzaHutApp/Site,Promotions,Coupons:ConsumerGetsPromotions
+Consumer.SearchDiscountCouponsOnOtherSitesOnInternet->Internet,Discount/CouponWebSites,Coupon :ConsumerGetsCoupons
+Consumer.ApplyDiscountCoupons->PizzaHutSite/App,Coupons:CouponsApplied
+Consumer.CheckOut->PizzaHut Site/App,Total Price,Promotions,Credit Card,CashonDelivery:PaymentPage
+Consumer.MakePayment:->PizzaHut Site/App,Credit Card,Cash,Tip:OrderConfirmation
+   if(Consumer.MadePayment==Credit Card)
+           CreditCardCompany.AuthorizeTransaction
+                If{
+                    CreditCardCompany.DeclineTransaction 
+                    PizzahutSite/App.CancelOrder
+                End }
+
+PizzahutSite/App.SendReceipt/Confirmation->PizzaHut Site/App,ConsumerEmailAddress:Confirmation
+PizzaHut.MakePizza->Pizza Order
+if (Customer.SelectHomeDeliveryToGetOrderedPizza->Internet,PizzaHutSite/App,HomeDeliveryAddress:PizzaGetsDeliveredToAddress
+Else{
+Customer.PickUpPizzaFromPizzaHutStore->Name,Contactno,Order Receipt,Pizza StoreLocation: Consumer Picks pizza From Pizza Store
+}
+Else{
+Consumer.CannotPlaceOrderPizza
+}}
+Else{
+Consumer.BrowseInternetAfterAWhileBack
+}
+
+End
