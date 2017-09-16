@@ -1,0 +1,89 @@
+Identify Objects and Behaviors:
+
+Vending Machine: 
+ Data:Items,ItemName,ItemCodes,ItemPrice,ItemQuantity,Tray,Coin/Cash/Credit Card Slots,Bank account
+ Behavior:TakeOrder,DropItem,DropCash/Coins,Accept Cash/Coins/CreditCardThroughSlots, Accept Payment,Reset
+
+Customer:
+Data: ItemCode,item Quantity,Cash/Coins,CreditCard
+Behavior:Enter ItemCode,Enter Quantity,Place Order,Insert Cash/Coins,Make Credit CardPayment,CollectItem,Collect        Change,Cancel Order
+
+Item
+Data:Id,Name,Code,Type,Quantity
+Behaviour:
+
+CreditCard
+Data:CardNo,Name,Security Code,Expiry Date
+Behaviour:
+
+Credit CardCompany
+Data:
+Behavior: Authorize
+
+Sequence Of Invoking Behaviors On Objects 
+
+If (VendingMachine.IsNotEmpty && VendingMachine.IsWorking)
+{
+ VendingMachine.ShowItemDetails->Item Name, Item Codes,Item Types,Price:  Customer See Item Details On Machine
+ VendingMachine.KeepItemInventory->ItemName,Item Id/Code,MaximumQuantity: MaximumQuantityForEachItem is saved in Machine
+  Customer.SelectItem->Vending Machine,ItemID,ItemName,ItemPrice,ItemCode:  An Item Gets Selected
+   if(Customer.SelectedItemIsAvailable ||Customer.SelectedItemIsNotSold)
+      {
+       Customer.OrderSelectedItem->Vending Machine,ItemCode,Item Quantity :VendingMachine Takes Order
+        if(Customer.EnteredQuantityForSelectedItem<MaximumQuantityOfSelectedtemInInventory)
+         {
+          Vending Machine.DisplayTotalPrice->Vending Machine,Price,Message: Customer See Price To Pay
+           Customer.MakePayment->VendingMachine,Slots,Price,Cash/Coin,Credit Card:VendingMachine Receives Money
+               if (VendingMachine.ReceiveMoney =TotalPrice){
+                 VendingMachine.PlaceOrder->Vending Machine,ItemCode,Price: OrderConfirmation:Message
+                  VendingMachine.DropItemIntoTray->VendingMachine,Item,Tray:  Customer Collect The Item From Tray
+                   }
+                if(VendingMachine.ReceiveMoney>TotalPrice && RemainingChange.isAvailableInVendingMachine)
+                 {
+                  VendingMachine.PlaceOrder->Vending Machine,ItemCode,Price,Change :Order Confirmation Message
+                  VendingMachine.DropItemAndChangeIntoTray->VendingMachine,Tray,Item,Change:CustomerCollectItem&Change 
+                    }
+                   Else {
+                  VendingMachine.ThrowNotSufficientChangeException->Machine,ExceptionMessage:MessageDisplayed On Machine
+                   VendingMachine.CancelOrder->VendingMachine,Item,Tray,Money: MachineDrops Inserted Money Back To tray
+                    Customer.CollectsInsertedMoneyFromTray->VendingMachine,Tray,Cash/Coins
+                    VendingMachine.Reset->VendingMachine:CustomerEnteredData Get Cleared
+                       }
+                    if(VendingMachine.ReceivedMoney<TotalPrice)
+                     { 
+                    VendingMachine.ThrowNotFullPaidException->Vending Machine,ExceptionMessage:MessageDisplayed on Machine
+                 VendingMachine.NotifyRemainingAmountToBeInsertedToCustomer->Vending Machine,Notification,Money:Notification Blinks on Machine       
+                             if (Notification==True && Customer.DoesnotInsertRemainingMoney){
+                                VendingMachine.CancelOrder->VendingMachine,Item,Tray,Money:Machine Drops Inserted Money Back To Tray
+                                 Customer.CollectInsertedMoneyFromTray->Vending Machine,Tray,Cash,Coins
+                                 VendingMachine.Reset->Vending Machine:CustomerEnteredData Get Cleared
+                                       }Elseif  (Notification==True && Customer.InsertRemainingMoney){
+                                   VendingMachine.PlaceOrder->VendingMachine,Item,tray:Machine Drops Item ToTray
+                                    Customer.CollectsItemFromTray->VendingMachine,Tray,Item
+                                                            }}
+       if (Customer.CancelOrder && VendingMachine.YetToDropItemintoTray)
+            {
+         VendingMachine.CancelOrder->VendingMachine,Item,Tray,Credit Card,Cash,Coins,,:Machine Refunds/Drops MoneyBack To Customer
+          Vending Machine.Reset->VendingMachine:CustomerEnteredData Get Cleared
+         }}
+
+        Else{
+        VendingMachine.throwCrossedMaximumQuantityException->VendingMachine,ExceptionMessage:Message Displayed on Machine
+        Vending Machine.Reset->VendingMachine:CustomerEnteredData Get Cleared
+        }}
+    Else{
+    Customer.SelectAnotherUnsoldItem->Item,ItemCode,Item Quantity
+        }}
+Else 
+{
+Customer.cannotplaceorder;
+}
+End
+
+
+
+
+
+
+
+
