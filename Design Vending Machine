@@ -47,7 +47,7 @@ If (VendingMachine.IsNotEmpty && VendingMachine.IsWorking)
                   VendingMachine.ThrowNotSufficientChangeException->Machine,Change,ExceptionMessage:MessageDisplayed On Machine
                    VendingMachine.CancelOrder->VendingMachine,Item,Tray,Money: MachineDrops Inserted Money Back To tray
                     Customer.CollectsInsertedMoneyFromTray->VendingMachine,Tray,Cash/Coins
-                    VendingMachine.Reset->VendingMachine:CustomerEnteredData Get Cleared
+                    VendingMachine.Reset->VendingMachine,Data(Item Code,Item Quantity):CustomerEnteredData Get Cleared
                        }
                     if(VendingMachine.ReceivedMoney<TotalPrice)
                      { 
@@ -56,7 +56,7 @@ If (VendingMachine.IsNotEmpty && VendingMachine.IsWorking)
                              if (Notification==True && Customer.DoesnotInsertRemainingMoney){
                                 VendingMachine.CancelOrder->VendingMachine,Item,Tray,Money:Machine Drops Inserted Money Back To Tray
                                  Customer.CollectInsertedMoneyFromTray->Vending Machine,Tray,Cash,Coins
-                                 VendingMachine.Reset->Vending Machine:CustomerEnteredData Get Cleared
+                                 VendingMachine.Reset->Vending Machine,Data(Item Code,Item Quantity):CustomerEnteredData Get Cleared
                                        }Elseif  (Notification==True && Customer.InsertRemainingMoney){
                                    VendingMachine.PlaceOrder->VendingMachine,Item,tray:Machine Drops Item ToTray
                                     Customer.CollectsItemFromTray->VendingMachine,Tray,Item
@@ -64,12 +64,12 @@ If (VendingMachine.IsNotEmpty && VendingMachine.IsWorking)
        if (Customer.CancelOrder && VendingMachine.YetToDropItemintoTray)
             {
          VendingMachine.CancelOrder->VendingMachine,Item,Tray,Credit Card,Cash,Coins,,:Machine Refunds/Drops MoneyBack To Customer
-          Vending Machine.Reset->VendingMachine:CustomerEnteredData Get Cleared
+          Vending Machine.Reset->VendingMachine,Data(Item Code,Item Quantity):CustomerEnteredData Get Cleared
          }}
 
         Else{
         VendingMachine.ThrowCrossedMaximumQuantityException->VendingMachine,Item,ExceptionMessage:Message Displayed on Machine
-        Vending Machine.Reset->VendingMachine:CustomerEnteredData Get Cleared
+        Vending Machine.Reset->VendingMachine,Data(Item Code,Item Quantity):CustomerEnteredData Get Cleared
         }}
     Else{
     Customer.SelectAnotherUnsoldItem->Item,ItemCode,Item Quantity
