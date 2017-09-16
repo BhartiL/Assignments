@@ -34,7 +34,7 @@ If (VendingMachine.IsNotEmpty && VendingMachine.IsWorking)
          {
           Vending Machine.DisplayTotalPrice->Vending Machine,Price,Message: Customer See Price To Pay
            Customer.MakePayment->VendingMachine,Slots,Price,Cash/Coin,Credit Card:VendingMachine Receives Money
-               if (VendingMachine.ReceiveMoney =TotalPrice){
+               if (VendingMachine.ReceiveMoney==TotalPrice){
                  VendingMachine.PlaceOrder->Vending Machine,ItemCode,Price: OrderConfirmation:Message
                   VendingMachine.DropItemIntoTray->VendingMachine,Item,Tray:  Customer Collect The Item From Tray
                    }
