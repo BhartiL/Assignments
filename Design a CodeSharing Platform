@@ -1,0 +1,105 @@
+Identify Objects and Behaviors:
+
+Internet: 
+Data:Collection of Code Sharing Websites
+Behavior:Search For GitHub Website
+
+CodeSharingPlatform GitHub :
+Data: UrL,Repositories,Users/Collabrators,Followers,Issue,MarketPlace
+Behavior:RegisterUser, Create Security Tokens For Device,Create Repository
+
+Repository:
+Data:Owner,Contributors,File,Branches,Releases
+Behavior:Create File,Upload File,Download/Clone File,Create Branches,Add Contributors,Delete Added Contributors,Make Releases,Commit Change,Delete Files
+
+CommandPrompt/Terminal
+Data:Terminal,Commands
+Behaviour:Execute Commands
+
+User/Owner/Collaborator:
+Data:Name,Email,UserName,Password,
+Behavior:CreateGitHubAccount,LoginToGitHub,CreateRepository,Manage&Create Branches,Commit Changes in File/Repository,Open&Merge Pull Requests,Create Mentions&Discussions,Fork,Star,Watch Updates,Create Issue,Resolve issue,
+
+Sequence Of Invoking Behaviors On Objects 
+
+if(internet.working)&&(GitHubSite.IsWorking)
+{
+  if(User.DoesnotHaveGitHubAccount){
+   User.CreateGitHubAccount->GitHub Website,Name,Email Id,Contact,Username,Password:UserAccountGetsCreatedOnGitHub
+   GithHubSite.SendConfirmationToUser->GitHub Website,Email Id,Contact no:UserReceivedConfirmation
+}
+User.LoginToGitHubWebsite->GitHub Site,Username,Password:UserGetLoggedInToGitHub
+if(UserIsAuthorized)
+ {
+User.CreateRepositoryOnGitHub->GitHub Site,RepositoryName,RepositoryDescription,Public/PrivateAccess,README : RepositoryGetsCreated
+
+ if(User.WantsCreateLocalRepository)->Terminal/Command Line editor,LocalFolder,GitInit()Command: Repository GetsCreated On UserLocalMachine
+
+ If(User.IsOwnerOfRepository || User.HasContributor/CollaboratorAccessOnOtherUser/Owner’sRepository)
+{
+  User.CanCreateFiles->GitHub Website,Repository Name,File Name: FilesCreated 
+  User.CanUploadFiles->GitHub Website,RepositoryName,FileName :Files Uploaded 
+  if(User.WantsToClone/DownloadFiles/Repository)->GitHubWebsite,Repository/Files:Files get copied or downloaded to User Local  Machine
+
+  If(User.WantsToCreateBranchUnderRepository)->GitHub Website,Repository Name,BranchName : Branch Gets Created  
+
+  if(User.WantsToCommitChangesInRepository/File/BranchOnGitHub)->GitHub Website,Repository/Branch/File,Changes,Description of Changes:Changes Get Committed
+
+ If(User.WantsToPushChanges/FilesFromLocalRepositoryToGithubRepository)->GitHubWebsite,File,Repository/Branch Name,Changes,Description,Terminal,Command:Changes Pushed To Repository
+if(User/Users.WantsToCreatePullRequests)->GithubWebsite,Users,Repository,Branch,Changes,Title,Description:PullRequestGets Created 
+
+if(User.WantToWatchUpdatesOnRepository)->GitHub WebSite,Repository,Updates,Conversations,Notification,Email:NotificationToUserSent
+
+if(User.WantsToTrackIssue)->GitHubWebsite,Issues,Collaborators:Issue Status-Opened/Closed/Assigned
+if(User.WantsCreate/DeleteMilestones)->GitHub Website,Repository/Files/Branches,Milestones:Milestones-Created/Deleted
+if(User.WantsToCheckStatusOnRepository)->GitHub Website,Repository/Files/Branches,Changes:Status Generated
+if(User.WantToSeeRepositoryInsights)->GitHub Website,Repository/Files/Branches,Graph,Pulse: Graph/Pulse Generated
+if(User.WantsToExploreOnGitHub)->GitHub Website,Source-Projects/Repositories,Topics:Explored Results Generated
+if(User.WantsToCreateMentionsAndDiscussions)->Github Website, Github UserIds,Collaborators,@Symbol,Message,Errors,Flagging Issues,Discussion:Mentions and Discussion Created
+
+if (User.NeedsGitHubHelp)->GitHubWebsite,Commands,Problem/Questions,Solutions/Answers: GitHubHelp Page Loaded
+
+if(User/Users.WantToForkOwnerRepository)->GitHub website,Repository,File,Copy,Download,Changes: VersionOfMasterRepository gets copied ToUserLocalMachine
+
+if (User.WantToLikeRepository/Project)->GitHub Website,Repository/Project Name,Star
+  }
+
+If(User.IsOwner){
+
+if (User.WantsToMergeChangesMadeinBranchesToMasterRepository)->GitHub Website,Master  Repository/Project,Branches,Files,Changes: Changes Integrated in Master Repository 
+
+ If(User.WantsToInviteCollaborators)->Git Hub Website,GitHub account, GitHub Usernames/Ids,Repository: Invitation Notification Sent To Other/Added Users
+
+ if(User.DeleteRepository/File/Branch)->GitHub Website,Repository/File/Branch Name: Repository Deleted
+ if(User.DeleteAddedCollaborators)->Git Hub Website,Repository Name, GitHub Usernames/Ids: Users Deleted
+ if(User.WantsToManageTopicsInRepository)->Git Hub Website,Repository Name,Topics:Topics Managed
+ if(User.WantsToChangeVisibilityOfRepository)->GitHub Website,Repository Name,Access:Access Modified OnRepository
+ if (User.WantsToAddApps/Service)->GitHubWebsite,Apps,Service:Apps/Service added on OwnersGitHubAccount
+ if(User.WantsToBuyToolsFromGithubMarketPlace)->GitHubWebsite,Tools,MarketPlace:Order Confirmation:Tool Purchased
+ if(User.WantsToBlockOtherGitHubUsersOnRepository)->GitHubWebsite,GitHubUserIDs,Repository:Users Blocked On Owner'sRepository
+}}
+Else{
+User.cannotUse GitHub
+}}
+Else{
+User.browseInternetAfterAWhileBack}
+End
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
