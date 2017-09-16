@@ -1,0 +1,78 @@
+Identify Objects and Behaviors:
+
+OrganisationWebsite:
+Data:URL,JobFairDetails,AttendeesList,Companies List,Bank account
+Behaviour:Sponsor The Event,Advertise The event
+
+Organiser/I(Bharti)
+Data: Name,Email address, Contact number,PermissionsTo publish on Organization site,Money,
+Behaviour:Prepare Budget,Search Sponsors,Select Date And Time,Search Venue,AdvertiseCareerFair,invite companies,Invite JobSeekers/Students,Search Volunteers, Make basic Arrangement(Table/Chair,Power connection),Arrange Refreshments, Follow up Companies,Make Brochure,Prepare Map, Set up booths,Invite Media, Arrange Audio Visual equipments.
+
+BrochureKit:
+Data:Venue Map ,Booth Locations,List Of companies,Point of contact numbers and Ids
+Behaviour
+
+Volunteer:
+Data:Email Id,name,Contact no
+Behavior:Take questions From Attendees/Job Seekers,Prepare Brochure Kit,Stand on RegistrationTables,Help Organiser To set up Booths,Help Organizer to Organise Career Fair
+
+Companies:
+Data:Name,EmailId,Contact Number,Requirements for Recruitment,
+Behaviour:Accept Invitation,Sponsor Event,Check Resumes,Interview Job seekers,Hire Job seeker for jobs,Advertise/promotions
+
+Job Seekers/Students
+Data:,Name,Email ID,Contact numbers,Address,Signature,Resumes
+Behavior:RegisterTo Career Fair,Fill forms,Ask questions,Give Interviews,Give resumes,Sign Forms,Follow up
+Sequence Of Invoking Behaviors On Objects 
+
+Organiser.PrepareBudget->Advertising Cost,Audio-visualEquipment cost ,VenueRental Cost ,Insurance cost ,PostersMaking Cost,Copying/Postage Cost,PrintingNameTags Cost,PrintingPapersCost,Printing Maps Cost,Making Brochure kit Cost,PrintingResumes Cost,RefreshmentCost,MarketingCost,LodgingCost,TransportationCost,Parking Cost,Infrastructure Cost,Cleaning Cost: TotalBudgetGetsCreated
+if(Budget.IsPrepared){
+if (Organisation/School IsNotSponsoring/HalfSponsoringTheCareerFairEvent) 
+{
+Organiser.SearchSponsorship:->Internet,Phone,Email,Contact no,Letters,Companies,OtherOrganizations,Organization’sBank Account: OrganizerGets SponsorShip
+}
+  If (Organizer.getSponsorship){
+   Organiser.SetDate-TimeForCareerFair->Date,Time :Date-Time Decided For Career Fair
+
+    if (CareerFairIsBeingOrganisedInsideOrganizationCampus||Organisation.HasEnoughSpace/BigRooms){
+         Organiser.ReserveRoom->Organisation/School,Room no,Date,Time
+  }
+Else{
+Organiser.SearchLargeLocalVenueuesInCity->Venues,City,Date,Time 
+Organiser.ReserveVenue->Venue, City,Date,Time : BookingConfirmation
+}
+Organiser.InviteCompaniesToCareerFair->Internet,Phone,Email,Letters,Contact No,Venue,Date,Time:Companies Repond
+
+Organiser.PrepareListOfCompaniesComingToCareerFair->Companies Name,Email ID,Contact No:ListGetsPrepared
+
+Organiser.SearchVolunteersFromOrganisation->Organisation/School Website,Posts,Number of Openings,Invitation Letter,Social MediaPlatform,Bulletin Board Posts ,RegistrationForms :  Students Interested For Volunteering Respond
+            
+Organiser.AdvertiseTheCareerFair->Organisation/SchoolWebsite/Intranet,Post,Date,Time,Venue,Sponsors,CompaniesList,Local Newspaper,Posters:JobSeekersgetInformed
+                 
+Organiser.SendInvitationToMedia/Newspaper-> Email,Letter,Contact Number:Media Respond
+Organiser.AskAtendees/JobSeeker/StudentsToRegister/FillForm:Internet,Website,Forms,Name,Email,Address,Resumes,Contact No:Students Respond
+
+Organiser/Volunteers.SetUpBooths->Area,Table,Chairs,Projectors,Power Connections: Booths Set Up For Each Company
+Organiser/Volunteers.DesignBrochure->Venue Map,Companies List,Booths location,Point of contact,Pen, Paper  :Brochure Printed
+Organiser/Vounteers.DistributeDesignBrochure->CareerFairAttendees,Printed Brochure: Attendees Received Brochure
+Organiser/Volunteers.PrepareNameTagsAndSignsForJobFairAttendees->Name,Email Id,Contact Id,PhotoID,Signs :TagsPrepared
+Organiser.PlaceVolunteersAtStrategicPointsToTakeQuestions->RegistrationTable,Exit Door,Entry Door 
+MediaPartner.RecordTheEvent->Photos,Video,Audio : Media Publish Event
+Organiser/Volunteer.DistributeRefreshments->Snacks,Water :Career Fair Attendees Have Snacks
+Organiser/Vounteer.DistributeSurveyExitingForms->Forms,Attendees :Attendees Give FeedBack
+Organiser/Volunteer.EvaluateAttendance->Student/job seekers,Signs,Companies,Tags
+Organiser.EvaluateCompletedSurveyForms->Forms
+Organiser.SendThankYouNoteToEmployersAfterTheJobFair->Internet,Email,Letter : Companies Respond
+Organiser.ShareSuccessStoriesOnOrganisationWebsite->Website,Stories,Posts 
+Organiser.MakeFinalReport->Companies,Students,Attendance,Jobs,Media 
+}
+
+Else
+{
+Organiser.CannotOrganiseCareerFair
+}}
+Else{
+ Organiser.ShouldMakeBudgetFirst
+}
+  End   
+
