@@ -1,0 +1,98 @@
+Identify Objects and Behaviors:
+
+MountRaineer Mountain:
+Data:Trails,WildAnimals,Trail Signs,WarningsBoards,Trees,Water
+Behaviour:
+
+National park: 
+Data:Mountain mount Rainier,Trees,Water
+Behaviour:
+
+Hiker/Friends
+Data:Name,AddressContact no,Email ID,Credit Card,Cash,Vehicle,Bag,Clothes,HikingShoes
+Behavior: CheckWeatherForecast,Call Friends,Select Date,BookHotel,Pack Bag,Rent Vehicle,Drive Vehicle, GetReady,SearchRestaurant,Order Food,Eat Food,BuyTickets,Hike,CheckInToHotel,Take Rest,CheckOutFromHotel,Make Payment
+
+HotelBookingWebsite:
+Data: Hotel,Rooms,Parking,CheckInDate,CheckOutDate
+Behaviour: Book Hotels,Reserve Rooms,Reserve Parking Slots,Send confirmation
+
+Restaurant:
+Data:Menu,Food,Chairs/tables,Cook
+Behavior:Take Order,Serve Food,Make Bill
+
+GasStation:
+Data: Gas,Price,BankAccount
+Behavior:Fill Gas,Show Price,GetPayment
+Sequence Of Invoking Behaviors On Objects 
+If(Internet.IsWorking){
+Hiker.SearchHikes->Internet,TripAdvisorSite:MountRainier
+
+Hiker.CheckWeatherForecast->Internet,Websites/WeatherApp,Mount Rainer,Date/Day :  Websites/Apps ReturnsWeatherResults
+
+if(Weather.IsGoodThoughOutSeason)
+{
+Hiker.SelectWeekend Day/Date->Day,Date : Date/Day Decided
+
+Hiker.GatherFriendsForHiking->Call,Message/Chat-Watsapp:Friends Respond
+
+Hiker.SearchHotelsAroundPark->Internet,Question:Collection of HotelBookingSite
+Hiker.FindDesirableHotelBookingSite -> Collection of Hotel Websites : Hotel website
+Hiker.BookHotel->Hotel Site,Name,Email Id,Contact No,NumberOfRooms,CheckinDate/Time,CheckOutDate/Time
+Hiker.MakePayment->Internet,CreditCard:BookingConfirmation
+     CreditCardCompany.AuthorizeTransaction
+If{
+                    CreditCardCompany.DeclineTransaction 
+                    Hiker.CantBookHotel
+                End }
+
+Hiker/Friends.PackBag->Energy-BoostingSnack,Compass,Map,FlashLight/Lighter,ExtraLayerOfClothing,Snacks,FirstAidKit,Binoculars,Water,PersonalItems:BagPacked
+Hiker/Friends.GetReady->Hiking Shoes,Hiking Clothes,Jacket:Hiker/Friends Get Ready For Hiking
+
+Hiker.BookReachNowToDrivetoPark->Internet,ReachNow Website,Name,Email ID,Contact No,Vehicle,CreditCard,No Of Days:Booking Confirmation
+     CreditCardCompany.AuthorizeTransaction
+If{
+                    CreditCardCompany.DeclineTransaction 
+                    Hiker.cantBookReachNow
+                End }
+if(Vehicle.IsEmpty/HasLessAmountOfGas){
+Hiker/Friend.DriveVehicleToGasStation->Vehicle,Gas Station:Hiker with Friends Reached Gas Station
+Hiker.FillTheGas->Gas Station,Gas,Quantity,Quality:Gas Filled 
+Hiker.MakePaymentForGas->GasStation,Gas,Price,CreditCard:Confirmation:Receipt
+}
+  if(Hiker/Friends.AreHungry){
+Hiker/Friends.SearchRestaurantsNearby->Internet,Restaurants:Hiker FindsRestaurant
+Hiker/Friends.PlaceOrder->Menu,Dish,Price:Order Confirmation
+Restaurant.ServeOrderedFood->Dish,Water
+Hiker/Friends.EatFoodAndPayTheBill->Restaurant,Bill,Cheque,Credit Card,Cash,Tip:Payment Confirmation
+}
+Hiker/Friends.DriveToNationalPark->Vehicle,National Park,Map:Hiker with Friends get into the Park
+
+Hiker/Friends.BuyParkTicket->National park,Ticket,Credit Card,Cash:Ticket Purchased
+
+Hiker.PurchaseLocalHikingGuide->Book Guide,Credit Card,Cash:Book Purchased
+
+Hiker/Friends.StartHiking->Trail,TrailMarkers,Warning Board,Tail Head
+
+if(Hiker/Friends.getTired)
+{
+Hiker/Friends.StopForBreak->Water,Snacks:Hiker/Friends Eat Snacks and Drink Water
+
+}
+Hiker/Friends.StartAgainHikingonTrail->Trail,TrailMarkers,Warning Board,Tail Head
+
+Hiker.TakePictures;Phone,Camera,Selfie Stick: Pictures Taken
+Hiker/Friends.HikingFinished(){
+Hiker.CheckInHotel->Hotel,Name,ID,Email ,Contact Number, Room number,Date/Time: Hiker/Friends get into Hotel Rooms
+Hiker/Friends.OrderFood->FoodMenu,Hotel,Credit Card:Order Confirmation
+Hiker/Friends.EatFood->OrderedFood
+Hiker/Friends.TakeRest->Rest
+}
+Hiker/Friends.CheckOutFromHotel->Hotel,Room,Date/Day,Time,Name,Signature:CheckOutDone
+Hiker/Friends.DriveBackToHome->HomeAddress,Vehicle:
+}}
+Else{Hiker.PlanHikingNextSeason}}
+Else{
+Hiker.BrowseInternetAfterAWhileBack
+}
+End
+
