@@ -8,9 +8,9 @@ public class Assignment2 {
 		Assignment2 A=new Assignment2();
 		System.out.println("The Total Salary of Employee is : "+A.employeeSalary(45)); /*Execution of employeeSalary function, Problem-1*/
 		System.out.println("The Sum of Digits is: "+A.addDigits(573));		/*Execution of addDigits Function,Problem-2*/
-		A.printPerfectNumbers(500);							/*Execution of printPerfectNumbers function,Problem-3*/
+		A.printPerfectNumbers(500);						/*Execution of printPerfectNumbers function,Problem-3*/
 		System.out.println(" ");
-		A.printIsoscelesTriangle(6);							/*Execution of printIsocelesTriangle function,Problem-6*/
+		A.printIsoscelesTriangle(6);						/*Execution of printIsocelesTriangle function,Problem-6*/
 	
 		Pizza pizza=A.new Pizza();						/*Execution of Default Pizza Constructor-Problem-4 */
 		Pizza Pizza1=A.new Pizza("ChickenPizza",5.5,20);			/*Execution of Parameterized Pizza Constructor-Problem-4 */
@@ -32,7 +32,7 @@ public class Assignment2 {
 
 		Customer C1=A.new Customer("Nancy",9.00);   						/* Customer constructor taking customerName and Pizza Price */
 		C1.addPizzaToOrder("VegPizza", 3);	      						/*Execution of addPizzaToOrder */
-		System.out.println("Money Spent on Pizza by "+C1.customerName+" : "+C1.calculateAmount());		/* Execution of calculateAmount */
+		System.out.println("Money Spent on Pizza by "+C1.customerName+" : "+C1.calculateAmount()); /* Execution of calculateAmount */
 		
 	}
 	/**
