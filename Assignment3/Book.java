@@ -11,9 +11,9 @@ public class Book {
 		String name;
 	
 		public Book(int size){		//Error->Duplicate Method Book(int) is defined within the class
-			this.size = size;		//Two same (int) type Book constructor is defined within the class
-		}							/*Two methods with same name and [arg]types i.e.'int' here in this case,
-									can not be defined within the same class */
+			this.size = size;	//Two same (int) type Book constructor is defined within the class
+		}				/*Two methods with same name and [arg]types i.e.'int' here in this case,
+						   can not be defined within the same class */
 	
 		public Book(int size, int price, String name){
 			super(); 
@@ -22,14 +22,14 @@ public class Book {
 			this.name = name;
 		}
 	
-		public Book(int price){  //Error->Duplicate Method Book(int) is defined within the class
-			this.price = price;	//Two same Book(int) type method is defined within the class
-								/*Two methods with same name and [arg]types i.e.'int' here in this case,
-									can not be defined within the same class */	
+		public Book(int price){       //Error->Duplicate Method Book(int) is defined within the class
+			this.price = price;    //Two same Book(int) type method is defined within the class
+						/*Two methods with same name and [arg]types i.e.'int' here in this case,
+						 can not be defined within the same class */	
 		}
 	
 		public setName(String name){ //Error->return type of setName method is missing
-			return name;		}		//Every method should have return type e.g. String, int ,void etc..
+			return name;	} //Every method should have return type e.g. String, int ,void etc..
 	
 
 	public static void main(String[] args) {
