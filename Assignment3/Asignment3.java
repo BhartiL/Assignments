@@ -61,7 +61,7 @@ public class Asignment3 {
 	 * ii. Should be able to perform squareRoot,square, cube. (Score 1)
 	 * iii. Should be able to convert 'Fahrenheit-Celsius' ,Feet-Inches'. (Score 1)
 	 * Extra Credit(Score 2) 
-	 * The calculator should be able to solve a quadratic equation and return the solution as array.
+	 * iv.The calculator should be able to solve a quadratic equation and return the solution as array.
 	 */
 	public class Calculator {
 
@@ -102,13 +102,12 @@ public class Asignment3 {
 		}
 
 		/**
-		 * CalculatorAdvancedFunction1 is able to perform squareRoot, square, cube.
+		 * CalculatorAdvancedFunction1 is able to perform squareRoot, square, cube of number.
 		 * 
 		 */
 
 		public void calculatorAdvancedFunction(int num) {
-			// Square,cube and squareRoot of number can be calculated by below Math.pow
-			// functions
+			// Square,cube and squareRoot of number can be calculated by below Math.pow functions
 			/* System.out.println("Square of " + num + " is: " + Math.pow(num, 2)); */
 			/* System.out.println("Cube of " + num + " is: " + Math.pow(num, 3)); */
 			/* System.out.println("Square Root of " + num + " is: " + Math.sqrt(num)); */
@@ -127,7 +126,7 @@ public class Asignment3 {
 		}
 
 		/**
-		 * fahrenheitToCelsius method is able to convert 'Fahrenheit-Celsius'.
+		 * fahrenheitToCelsius method is able to convert Fahrenheit to Celsius.
 		 * 
 		 * @param Fahrenheit
 		 * @return
@@ -187,13 +186,13 @@ public class Asignment3 {
 				roots[1] = (-variables[1] - Math.sqrt(d)) / (2 * variables[0]);
 				System.out.println("First root is:" + roots[0]);
 				System.out.println("Second root is:" + roots[1]);
-			} else if (d == 0) {
+				} else if (d == 0) {
 				System.out.println("Roots are real and equal");
 				roots[0] = (-variables[1] + Math.sqrt(d)) / (2 * variables[0]);
 
 				System.out.println("Root:" + roots[0]);
 
-			} else {
+				} else {
 				System.out.println("Roots are imaginary " + roots[0]);
 			}
 		}
