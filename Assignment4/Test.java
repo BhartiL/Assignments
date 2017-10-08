@@ -96,7 +96,7 @@ class Course {
 		return false;
 	}
 /*
- * registerStudent method i registering students into students array
+ * registerStudent method is registering students into students array
  */
 	public void registerStudent(Student student) {
 		if (numberOfStudent <= 10) {
