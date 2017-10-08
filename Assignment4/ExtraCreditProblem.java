@@ -10,7 +10,7 @@ package Assignment4;
 public class ExtraCreditProblem {
 
 	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-		int sum = nums1.length + nums2.length; //adding up two arrays length
+		int sum = nums1.length + nums2.length; //adding up two input arrays length
 		if (sum % 2 == 0) {
 			return (findKth((sum / 2) + 1, nums1, nums2, 0, 0) + findKth(sum / 2, nums1, nums2, 0, 0)) / 2.0;
 		} else {
