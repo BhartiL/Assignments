@@ -41,7 +41,7 @@ class Tool {
 	protected int strength;
 	protected char type;
 
-	public void setStrength(int strength) { 
+	public void setStrength(int strength) { // setStrength method sets the strength for the Tool class
 		this.strength = strength;
 	}
 }
