@@ -1,6 +1,12 @@
 /**
- * This class keeps track of the entered Dessert Items. It calculates the tax
- * and total, then creates a formatted String in the form of a receipt.
+ * The Checkout class, provides methods to enter dessert items into the cash
+ * register, clear the cash register, get the number of items, get the total
+ * cost of the items (before tax), get the total tax for the items, and get a
+ * String representing a receipt for the dessert items. The Checkout class must
+ * use a Vector to store the DessertItem's. The total tax should be rounded to
+ * the nearest cent.This class keeps track of the enteredDessert Items. It
+ * calculates the tax and total, then creates a formatted String in the form of
+ * a receipt.
  */
 
 public class Checkout {
