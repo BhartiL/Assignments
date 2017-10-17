@@ -200,7 +200,7 @@ public class Asignment3 {
 				System.out.println("Root:" + roots[0]);
 
 				} else {
-				// No solutions for d < 0
+				// Or we can say No solutions for d < 0
 				System.out.println("Roots are imaginary " + roots[0]);
 			}
 		}
