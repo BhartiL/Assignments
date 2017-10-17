@@ -40,6 +40,7 @@ public class Asignment3 {
 	 * ii. Should return a boolean 'true' if the inputs are Anagrams else return 'false'.
 	 */
 	public boolean checkIfTwoStringsAreAnagram(String S1, String S2) {
+		// The naming convention for this varialble shoule be something like answer/ans/result/res
 		boolean flag = true;
 
 		if (S1.length() != S2.length()) {
@@ -88,11 +89,14 @@ public class Asignment3 {
 				System.out.print("The Product of two number is = " + result);
 				break;
 			case '/':
+				// For (int / int) , 1 / 2 will be 0, double result will return 0.0
 				result = a / b;
 				System.out.print("The Division of two number is = " + result);
 				break;
 			case ' ':
+				// What's the intention for System.exit(0)? Why not combine case ' ' with default case ?
 				System.exit(0);
+				// This line of code is unreachable
 				break;
 			default:
 				System.out.print("Wrong Choice!!!");
@@ -173,8 +177,10 @@ public class Asignment3 {
 		 */
 
 		public void quadraticCalculator(double a, double b, double c) {
+			// Why initiate roots as length of 4?
 			double[] roots = new double[4];
 			double[] variables = new double[3];
+			// No need to store a b c in variables
 			variables[0] = a;
 			variables[1] = b;
 			variables[2] = c;
@@ -182,6 +188,7 @@ public class Asignment3 {
 			System.out.println("Given quadratic equation is: " + a + "x^2 + " + b + "x + " + c);
 			if (d > 0) {
 				System.out.println("Roots are real and unequal");
+				// What if a == 0 ?
 				roots[0] = (-variables[1] + Math.sqrt(d)) / (2 * variables[0]);
 				roots[1] = (-variables[1] - Math.sqrt(d)) / (2 * variables[0]);
 				System.out.println("First root is:" + roots[0]);
@@ -193,6 +200,7 @@ public class Asignment3 {
 				System.out.println("Root:" + roots[0]);
 
 				} else {
+				// No solutions for d < 0
 				System.out.println("Roots are imaginary " + roots[0]);
 			}
 		}
