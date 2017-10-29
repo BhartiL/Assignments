@@ -56,6 +56,7 @@ public class Solution { // class Solution
 			return true;
 		}
 		// check downward path using recursion
+		// You can combine downward and forward path check using || into one if check
 		if (findPathRecursive(maze, path, x, y + 1)) {
 			return true;
 		}
