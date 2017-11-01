@@ -30,6 +30,7 @@ public class Hangman {
 	private ArrayList<Character> incorrectLetters; // incorrect guessed letters list
 	static String secretword = "";
 	private char[] word;
+	// If you have two or more instances, they wil share the same totoalChances variable, you will have trouble here
 	private int totalChances = 8; // total number of guess chances
 	private int totalGuessChances; // current totalGuessChances
 	static int count = 0;
