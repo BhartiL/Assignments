@@ -71,4 +71,4 @@ public class Problem1 {
 		A.softwareFormatKey("24A0-R74K", 4);
 	}
 
-}
+} 
