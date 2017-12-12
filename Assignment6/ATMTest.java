@@ -147,4 +147,4 @@ public class ATMTest {
 		ATM.exit();
 		Assert.assertTrue("Exit unsuccessful!!", ATM.currentUserBankAccountNo == -1);
 	}
-}
+} 
