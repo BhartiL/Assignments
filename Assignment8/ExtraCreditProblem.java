@@ -67,5 +67,4 @@ public class ExtraCreditProblem {
 		String originalstring = createOriginalFileString(file.getParent());
 		makeOriginalFile(originalstring, file.getParent());
 	}
-
 }
