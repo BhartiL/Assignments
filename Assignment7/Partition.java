@@ -49,4 +49,4 @@ public class Partition {
 		System.out.println(p.findPartition(arr8));
 	}
 
-}
+} 
